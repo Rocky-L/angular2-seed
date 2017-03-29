@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../services/courses.service'], function(exports_1, context_1) {
+System.register(['angular2/core', '../services/courses.service', '../directives/auto-grow.directive'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../services/courses.service'], function(expor
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, courses_service_1;
+    var core_1, courses_service_1, auto_grow_directive_1;
     var CoursesComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['angular2/core', '../services/courses.service'], function(expor
             },
             function (courses_service_1_1) {
                 courses_service_1 = courses_service_1_1;
+            },
+            function (auto_grow_directive_1_1) {
+                auto_grow_directive_1 = auto_grow_directive_1_1;
             }],
         execute: function() {
             CoursesComponent = (function () {
@@ -32,12 +35,13 @@ System.register(['angular2/core', '../services/courses.service'], function(expor
                     core_1.Component({
                         selector: 'courses',
                         // template: '<h2> Courses </h2>' // a HTML template
-                        template: "<h2> Courses </h2>\n              {{title}}\n              <ul>\n                <li *ngFor=\"#course of courses\">\n                  {{ course }}\n                </li>\n              </ul>\n            ",
+                        template: "<h2> Courses </h2>\n              {{title}}\n              <input type=\"text\" autoGrow />\n              <ul>\n                <li *ngFor=\"#course of courses\">\n                  {{ course }}\n                </li>\n              </ul>\n            ",
                         // back tick used to break to multiple lines
                         // {{}} interpolation, one-way binding
                         // #course: a way to declare local variable
                         // *ngFor: directive
-                        providers: [courses_service_1.CourseService] // dependencise
+                        providers: [courses_service_1.CourseService],
+                        directives: [auto_grow_directive_1.AutoGrowDirective] // directives
                     }), 
                     __metadata('design:paramtypes', [courses_service_1.CourseService])
                 ], CoursesComponent);
