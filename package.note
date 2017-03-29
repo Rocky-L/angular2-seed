@@ -2,7 +2,7 @@
   "name": "angular2-quickstart",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" ", // concurrently running two commands: 1. start running type script complier in a watch mode and start a lite web server
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lite": "lite-server",
@@ -25,3 +25,5 @@
     "typescript": "^1.7.5"
   }
 }
+
+// typescript complier convert/map ts files into js in a tmp folder
