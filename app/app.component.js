@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', './components/star.components'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,25 +10,30 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, star_components_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (star_components_1_1) {
+                star_components_1 = star_components_1_1;
             }],
         execute: function() {
-            /* first project code */
-            //import {CoursesComponent} from './components/courses.components'; // import the component first to make it visible in directives
-            //import {AuthorsComponent} from './components/authors.components';
             AppComponent = (function () {
                 function AppComponent() {
                     this.title = 'Angular App';
                     this.imageUrl = 'http://lorempixel.com/400/200/';
                     this.isActive = true;
                 }
-                AppComponent.prototype.onClick = function () {
-                    console.log('Clicked');
+                AppComponent.prototype.onDivClick = function () {
+                    console.log("Handled by Div");
+                };
+                AppComponent.prototype.onClick = function ($event) {
+                    // to prevent bubbling up event to parent element, call stopPropagation()
+                    $event.stopPropagation();
+                    console.log('Clicked', $event);
                 };
                 AppComponent = __decorate([
                     core_1.Component({
@@ -40,7 +45,8 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                         //             <authors></authors>
                         //           `,
                         // directives: [CoursesComponent, AuthorsComponent] // any directives or components used inside this current component
-                        template: "\n                <h1> {{ title }} </h1> <!-- interpolation -->\n                <h1 [textContent] = \"title\"></h1> <!-- square equivalent -->\n\n                <img src=\"{{ imgageUrl }}\" />\n                <img [src]=\"imageUrl\" />\n                <img bind-src=\"imageUrl\" class=\"bind-src\" />\n                <!-- all of the above are property binding -->\n                <br/>\n                <p> ---------------------------------------- </p>\n                <br/>\n                <button class=\"btn btn-primary\" [class.active]=\"isActive\"> Class Binding </button> <!-- class binding, ps: bootstrap styling not working -->\n                <button class=\"btn btn-primary\" [style.backgroundColor]=\"isActive ? 'blue' : 'gray'\"> Style Binding </button>\n                <br/>\n                <p> ---------------------------------------- </p>\n                <br/>\n                <button (click)=\"onClick()\"> Event Binding </button>\n                <button on-click=\"onClick()\"> Event Binding </button>\n\n              "
+                        template: "\n                <h1> {{ title }} </h1> <!-- interpolation -->\n                <h1 [textContent] = \"title\"></h1> <!-- square equivalent -->\n\n                <img src=\"{{ imgageUrl }}\" />\n                <img [src]=\"imageUrl\" />\n                <img bind-src=\"imageUrl\" class=\"bind-src\" />\n                <!-- all of the above are property binding -->\n                <br/>\n                <p> ---------------------------------------- </p>\n                <br/>\n                <button class=\"btn btn-primary\" [class.active]=\"isActive\"> Class Binding </button> <!-- class binding, ps: bootstrap styling not working -->\n                <button class=\"btn btn-primary\" [style.backgroundColor]=\"isActive ? 'blue' : 'gray'\"> Style Binding </button>\n                <br/>\n                <p> ---------------------------------------- </p>\n                <br/>\n                <div (click) = \"onDivClick()\">\n                  <button (click)=\"onClick($event)\"> Event Binding </button> <!-- $event is a DOM object -->\n                </div>\n                <button on-click=\"onClick($event)\"> Event Binding </button>\n                <br/>\n                <p> ---------------------------------------- </p>\n                <br/>\n                <input type=\"text\" [value]=\"title\" (input)=\"title = $event.target.value\" /> <!-- bad practice -->\n                <input type=\"text\" [(ngModel)]=\"title\" /> <!-- [()] property && event binding -->\n                <input type=\"text\" bindon-ngModel=\"title\" /> <!-- equivalent -->\n\n                <input type=\"button\" (click) = \"title = ''\" value=\"Clear\"/>\n                Preview: {{title}}\n                <br/><br/>\n                <star style=\"margin-left: 10em;\"></star>\n              ",
+                        directives: [star_components_1.StarComponent]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

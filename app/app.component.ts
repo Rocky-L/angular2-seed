@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 /* first project code */
 //import {CoursesComponent} from './components/courses.components'; // import the component first to make it visible in directives
 //import {AuthorsComponent} from './components/authors.components';
+import {StarComponent} from './components/star.components';
 
 @Component({
     selector: 'my-app',
@@ -29,10 +30,23 @@ import {Component} from 'angular2/core';
                 <br/>
                 <p> ---------------------------------------- </p>
                 <br/>
-                <button (click)="onClick()"> Event Binding </button>
-                <button on-click="onClick()"> Event Binding </button>
+                <div (click) = "onDivClick()">
+                  <button (click)="onClick($event)"> Event Binding </button> <!-- $event is a DOM object -->
+                </div>
+                <button on-click="onClick($event)"> Event Binding </button>
+                <br/>
+                <p> ---------------------------------------- </p>
+                <br/>
+                <input type="text" [value]="title" (input)="title = $event.target.value" /> <!-- bad practice -->
+                <input type="text" [(ngModel)]="title" /> <!-- [()] property && event binding -->
+                <input type="text" bindon-ngModel="title" /> <!-- equivalent -->
 
-              `
+                <input type="button" (click) = "title = ''" value="Clear"/>
+                Preview: {{title}}
+                <br/><br/>
+                <star style="margin-left: 10em;"></star>
+              `,
+    directives: [StarComponent]
 })
 export class AppComponent { 
   title = 'Angular App';
@@ -40,7 +54,14 @@ export class AppComponent {
 
   isActive = true;
 
-  onClick() {
-    console.log('Clicked');
+  onDivClick() {
+    console.log("Handled by Div");
+    
+  }
+
+  onClick($event) {
+    // to prevent bubbling up event to parent element, call stopPropagation()
+    $event.stopPropagation();
+    console.log('Clicked', $event);
   }
  }
