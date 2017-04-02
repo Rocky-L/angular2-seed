@@ -1,0 +1,49 @@
+<div class="my-app">
+  <div *ngFor="#tweet of tweets">
+    <tweet [tweet]="tweet"></tweet>
+  </div>
+  <br/>
+  <p> ---------------------------------------- </p>
+  <br/>
+  <h1> {{ title }} </h1> <!-- interpolation -->
+  <h1 [textContent] = "title"></h1> <!-- square equivalent -->
+
+  <img src="{{ imgageUrl }}" />
+  <img [src]="imageUrl" />
+  <img bind-src="imageUrl" class="bind-src" />
+  <!-- all of the above are property binding -->
+  <br/>
+  <p> ---------------------------------------- </p>
+  <br/>
+  <button class="btn btn-primary" [class.active]="isActive"> Class Binding </button> <!-- class binding, ps: bootstrap styling not working -->
+  <button class="btn btn-primary" [style.backgroundColor]="isActive ? 'blue' : 'gray'"> Style Binding </button>
+  <br/>
+  <p> ---------------------------------------- </p>
+  <br/>
+  <div (click) = "onDivClick()">
+    <button (click)="onClick($event)"> Event Binding </button> <!-- $event is a DOM object -->
+  </div>
+  <button on-click="onClick($event)"> Event Binding </button>
+  <br/>
+  <p> ---------------------------------------- </p>
+  <br/>
+  <input type="text" [value]="title" (input)="title = $event.target.value" /> <!-- bad practice -->
+  <input type="text" [(ngModel)]="title" /> <!-- [()] property && event binding -->
+  <input type="text" bindon-ngModel="title" /> <!-- equivalent -->
+
+  <input type="button" (click) = "title = ''" value="Clear"/>
+  Preview: {{title}}
+  <br/>
+  <p> ---------------------------------------- </p>
+  <br/>
+  <i class="glyphicon glyphicon-star" style="font-size: 3em;"></i>
+  <favorite style="margin-left: 10em;" [isFavorite]="post.isFavorite" (change)="onFavoriteChange($event)"></favorite>
+  <br/>
+  <p> ---------------------------------------- </p>
+  <br/>
+  <like [isLiked]="post.isLiked" (change)="onLikeChange($event)"></like> {{post.numLikes}}
+  <br/>
+  <p> ---------------------------------------- </p>
+  <br/>
+  <vote></vote>
+</div>

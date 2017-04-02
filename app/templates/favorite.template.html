@@ -1,0 +1,9 @@
+ <!-- <i class="glyphicon {{starClass}}" style="font-size: 4em;" (click)="onClick()"></i>  --> <!-- my solution -->
+
+<i
+    class="glyphicon"
+    [class.glyphicon-star-empty]="!isFavorite"
+    [class.glyphicon-star]="isFavorite"
+    (click)="onClick()"
+    style="font-size: 4em;">
+</i>

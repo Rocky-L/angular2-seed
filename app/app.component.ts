@@ -2,7 +2,11 @@ import {Component} from 'angular2/core';
 /* first project code */
 //import {CoursesComponent} from './components/courses.components'; // import the component first to make it visible in directives
 //import {AuthorsComponent} from './components/authors.components';
-import {StarComponent} from './components/star.components';
+import {FavoriteComponent} from './components/favorite.components';
+import {LikeComponent} from './components/like.components';
+import {VoterComponent} from './components/voter.components';
+import {TweetComponent} from './components/tweet.components';
+import {TweetService} from './services/tweet.service';
 
 @Component({
     selector: 'my-app',
@@ -14,41 +18,23 @@ import {StarComponent} from './components/star.components';
     //           `,
     // directives: [CoursesComponent, AuthorsComponent] // any directives or components used inside this current component
 
-    template: `
-                <h1> {{ title }} </h1> <!-- interpolation -->
-                <h1 [textContent] = "title"></h1> <!-- square equivalent -->
-
-                <img src="{{ imgageUrl }}" />
-                <img [src]="imageUrl" />
-                <img bind-src="imageUrl" class="bind-src" />
-                <!-- all of the above are property binding -->
-                <br/>
-                <p> ---------------------------------------- </p>
-                <br/>
-                <button class="btn btn-primary" [class.active]="isActive"> Class Binding </button> <!-- class binding, ps: bootstrap styling not working -->
-                <button class="btn btn-primary" [style.backgroundColor]="isActive ? 'blue' : 'gray'"> Style Binding </button>
-                <br/>
-                <p> ---------------------------------------- </p>
-                <br/>
-                <div (click) = "onDivClick()">
-                  <button (click)="onClick($event)"> Event Binding </button> <!-- $event is a DOM object -->
-                </div>
-                <button on-click="onClick($event)"> Event Binding </button>
-                <br/>
-                <p> ---------------------------------------- </p>
-                <br/>
-                <input type="text" [value]="title" (input)="title = $event.target.value" /> <!-- bad practice -->
-                <input type="text" [(ngModel)]="title" /> <!-- [()] property && event binding -->
-                <input type="text" bindon-ngModel="title" /> <!-- equivalent -->
-
-                <input type="button" (click) = "title = ''" value="Clear"/>
-                Preview: {{title}}
-                <br/><br/>
-                <star style="margin-left: 10em;"></star>
-              `,
-    directives: [StarComponent]
+    templateUrl: 'app/templates/app.template.html',
+    styles: [`
+      .my-app {
+        margin-top: 5em;
+        margin-left: 5em;
+      }
+    `],
+    providers: [TweetService],
+    directives: [FavoriteComponent, LikeComponent, VoterComponent, TweetComponent]
 })
-export class AppComponent { 
+export class AppComponent {
+  tweets: any[];
+
+  constructor(tweetService: TweetService) {
+    this.tweets = tweetService.getTweets();
+  }
+
   title = 'Angular App';
   imageUrl = 'http://lorempixel.com/400/200/';
 
@@ -63,5 +49,20 @@ export class AppComponent {
     // to prevent bubbling up event to parent element, call stopPropagation()
     $event.stopPropagation();
     console.log('Clicked', $event);
+  }
+
+  post = {
+    title: "Title",
+    isFavorite: true,
+    isLiked: false,
+    numLikes: 10
+  }
+
+  onFavoriteChange($event) {
+    console.log($event);
+  }
+
+  onLikeChange($event) {
+    this.post.numLikes += $event.newValue;
   }
  }
