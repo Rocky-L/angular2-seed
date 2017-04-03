@@ -1,4 +1,4 @@
-System.register(['angular2/core', './components/favorite.components', './components/like.components', './components/voter.components', './components/tweet.components', './services/tweet.service'], function(exports_1, context_1) {
+System.register(['angular2/core', './components/favorite.components', './components/like.components', './components/voter.components', './components/tweet.components', './services/tweet.service', './components/view.components', './components/post.components', './components/task.components', './components/bootstrap.panel.components', './components/zippy.components'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './components/favorite.components', './compone
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, favorite_components_1, like_components_1, voter_components_1, tweet_components_1, tweet_service_1;
+    var core_1, favorite_components_1, like_components_1, voter_components_1, tweet_components_1, tweet_service_1, view_components_1, post_components_1, task_components_1, bootstrap_panel_components_1, zippy_components_1;
     var AppComponent;
     return {
         setters:[
@@ -31,6 +31,21 @@ System.register(['angular2/core', './components/favorite.components', './compone
             },
             function (tweet_service_1_1) {
                 tweet_service_1 = tweet_service_1_1;
+            },
+            function (view_components_1_1) {
+                view_components_1 = view_components_1_1;
+            },
+            function (post_components_1_1) {
+                post_components_1 = post_components_1_1;
+            },
+            function (task_components_1_1) {
+                task_components_1 = task_components_1_1;
+            },
+            function (bootstrap_panel_components_1_1) {
+                bootstrap_panel_components_1 = bootstrap_panel_components_1_1;
+            },
+            function (zippy_components_1_1) {
+                zippy_components_1 = zippy_components_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -73,7 +88,7 @@ System.register(['angular2/core', './components/favorite.components', './compone
                         templateUrl: 'app/templates/app.template.html',
                         styles: ["\n      .my-app {\n        margin-top: 5em;\n        margin-left: 5em;\n      }\n    "],
                         providers: [tweet_service_1.TweetService],
-                        directives: [favorite_components_1.FavoriteComponent, like_components_1.LikeComponent, voter_components_1.VoterComponent, tweet_components_1.TweetComponent]
+                        directives: [favorite_components_1.FavoriteComponent, like_components_1.LikeComponent, voter_components_1.VoterComponent, tweet_components_1.TweetComponent, view_components_1.ViewComponent, post_components_1.PostComponent, task_components_1.TaskComponent, bootstrap_panel_components_1.BootstrapPanel, zippy_components_1.ZippyComponent]
                     }), 
                     __metadata('design:paramtypes', [tweet_service_1.TweetService])
                 ], AppComponent);

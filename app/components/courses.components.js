@@ -35,7 +35,7 @@ System.register(['angular2/core', '../services/courses.service', '../directives/
                     core_1.Component({
                         selector: 'courses',
                         // template: '<h2> Courses </h2>' // a HTML template
-                        template: "<h2> Courses </h2>\n              {{title}}\n              <input type=\"text\" autoGrow />\n              <ul>\n                <li *ngFor=\"#course of courses\">\n                  {{ course }}\n                </li>\n              </ul>\n            ",
+                        template: "<h2> Courses </h2>\n              {{title}}\n              <input type=\"text\" autoGrow />\n              <ul>\n                <li *ngFor=\"#course of courses, #i = index\">\n                  {{ i + 1 }} {{ course }}\n                </li>\n              </ul>\n            ",
                         // back tick used to break to multiple lines
                         // {{}} interpolation, one-way binding
                         // #course: a way to declare local variable

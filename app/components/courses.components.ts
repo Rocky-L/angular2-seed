@@ -9,8 +9,8 @@ import {AutoGrowDirective} from '../directives/auto-grow.directive';
               {{title}}
               <input type="text" autoGrow />
               <ul>
-                <li *ngFor="#course of courses">
-                  {{ course }}
+                <li *ngFor="#course of courses, #i = index">
+                  {{ i + 1 }} {{ course }}
                 </li>
               </ul>
             `,

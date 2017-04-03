@@ -1,12 +1,17 @@
 import {Component} from 'angular2/core';
 /* first project code */
-//import {CoursesComponent} from './components/courses.components'; // import the component first to make it visible in directives
-//import {AuthorsComponent} from './components/authors.components';
+import {CoursesComponent} from './components/courses.components'; // import the component first to make it visible in directives
+import {AuthorsComponent} from './components/authors.components';
 import {FavoriteComponent} from './components/favorite.components';
 import {LikeComponent} from './components/like.components';
 import {VoterComponent} from './components/voter.components';
 import {TweetComponent} from './components/tweet.components';
 import {TweetService} from './services/tweet.service';
+import {ViewComponent} from './components/view.components';
+import {PostComponent} from './components/post.components';
+import {TaskComponent} from './components/task.components';
+import {BootstrapPanel} from './components/bootstrap.panel.components';
+import {ZippyComponent} from './components/zippy.components';
 
 @Component({
     selector: 'my-app',
@@ -26,7 +31,7 @@ import {TweetService} from './services/tweet.service';
       }
     `],
     providers: [TweetService],
-    directives: [FavoriteComponent, LikeComponent, VoterComponent, TweetComponent]
+    directives: [FavoriteComponent, LikeComponent, VoterComponent, TweetComponent, ViewComponent, PostComponent, TaskComponent, BootstrapPanel, ZippyComponent]
 })
 export class AppComponent {
   tweets: any[];
